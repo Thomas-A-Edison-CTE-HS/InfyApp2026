@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InfyApp 2026 Team Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #ececec;
+      --ink: #151515;
+      --muted: #666;
+      --card: rgba(255, 255, 255, 0.72);
+      --line: rgba(0, 0, 0, 0.12);
+      --accent: #111;
+      --radius-xl: 32px;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.12);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.9), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(0, 0, 0, 0.08), transparent 22%),
+        var(--bg);
+      font-family: "Bricolage Grotesque", sans-serif;
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      background: rgba(236, 236, 236, 0.78);
+      backdrop-filter: blur(18px);
+      border-radius: 999px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      color: #fff;
+      background: #111;
+      border-radius: 50%;
+      font-size: 0.9rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a,
+    .pill-button {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.55);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .nav-links a:hover,
+    .pill-button:hover {
+      transform: translateY(-2px);
+      background: #fff;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 28px;
+      align-items: end;
+      padding: 80px 0 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.58);
+      font-weight: 800;
+      color: #333;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(3.3rem, 9vw, 8.8rem);
+      line-height: 0.86;
+      margin: 0;
+      letter-spacing: -0.08em;
+    }
+
+    .hero-copy {
+      margin: 22px 0 0;
+      max-width: 630px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      line-height: 1.5;
+    }
+
+    .hero-panel {
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.6rem;
+      letter-spacing: -0.04em;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      letter-spacing: -0.05em;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin: 34px 0 18px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      max-width: 420px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .filter-button {
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.52);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 800;
+    }
+
+    .filter-button.active {
+      color: #fff;
+      background: #111;
+    }
+
+    .team-stage {
+      min-height: 520px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .featured-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background: #111;
+      color: #fff;
+      box-shadow: var(--shadow);
+      min-height: 520px;
+    }
+
+    .featured-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.72;
+      filter: saturate(0.86) contrast(1.04);
+      transform: scale(1.03);
+      transition: transform 600ms ease, opacity 300ms ease;
+    }
+
+    .featured-card:hover img {
+      transform: scale(1.08);
+      opacity: 0.84;
+    }
+
+    .featured-content {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 28px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.86));
+    }
+
+    .featured-content h3 {
+      margin: 0;
+      font-size: clamp(2.4rem, 5vw, 5.4rem);
+      line-height: 0.88;
+      letter-spacing: -0.08em;
+    }
+
+    .featured-content p {
+      max-width: 520px;
+      font-size: 1.08rem;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .team-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      align-content: start;
+    }
+
+    .team-card {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.62);
+      padding: 16px;
+      min-height: 160px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .team-card:hover,
+    .team-card.active {
+      transform: translateY(-4px);
+      background: #fff;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-card.active {
+      outline: 3px solid #111;
+      outline-offset: -3px;
+    }
+
+    .team-card span {
+      display: inline-flex;
+      margin-bottom: 28px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .team-card h3 {
+      margin: 0;
+      font-size: 1.55rem;
+      letter-spacing: -0.04em;
+    }
+
+    .team-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .team-card::after {
+      content: "↗";
+      position: absolute;
+      right: 16px;
+      top: 14px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .about-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .about-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+      letter-spacing: -0.04em;
+    }
+
+    .about-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    footer {
+      margin-top: 52px;
+      padding: 26px;
+      border-radius: 28px;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .team-stage,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-card {
+        min-height: 440px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        border-radius: 28px;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .team-list,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .site-shell {
+        width: min(100% - 20px, 1180px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="InfyApp home">
+        <span class="brand-mark">IA</span>
+        <span>Thomas A. Edison CTE HS · InfyApp 2026</span>
+      </a>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="#teams">Teams</a>
+        <a href="#challenge">Challenge</a>
+        <a href="#archive">Archive</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="top">
+      <div>
+        <div class="eyebrow">✦ Student-built apps for real-world problems</div>
+        <h1>InfyApp<br />Showcase</h1>
+        <p class="hero-copy">
+          Celebrate this year’s teams with a bold interactive showcase. Each card can link to a team website, pitch deck, GitHub repo, or demo video.
+        </p>
+      </div>
+
+      <aside class="hero-panel" aria-label="Showcase summary">
+        <h2>2026 Cohort</h2>
+        <p>
+          Use this page as the hub for visitors, mentors, classmates, and families to explore every team’s final product.
+        </p>
+        <div class="stats">
+          <div class="stat"><strong id="teamCount">0</strong><span>Teams</span></div>
+          <div class="stat"><strong>6</strong><span>Milestones</span></div>
+          <div class="stat"><strong>1</strong><span>Final Demo</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="teams" aria-labelledby="teams-heading">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Team Gallery</div>
+          <h2 id="teams-heading">Choose a team.<br />Open their world.</h2>
+        </div>
+        <p>
+          Click a team card to spotlight it. Click “Visit Project” to open the team’s live page.
+        </p>
+      </div>
+
+      <div class="controls" id="filters" aria-label="Team filters"></div>
+
+      <div class="team-stage">
+        <article class="featured-card" id="featuredCard">
+          <img id="featuredImage" src="" alt="" />
+          <div class="featured-content">
+            <div class="tag-row" id="featuredTags"></div>
+            <h3 id="featuredTitle"></h3>
+            <p id="featuredDescription"></p>
+            <a class="pill-button" id="featuredLink" href="#" target="_blank" rel="noopener">Visit Project</a>
+          </div>
+        </article>
+
+        <div class="team-list" id="teamList" aria-label="All teams"></div>
+      </div>
+    </section>
+
+    <section id="challenge" aria-labelledby="challenge-heading">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">About the Challenge</div>
+          <h2 id="challenge-heading">Build. Test. Pitch. Reflect.</h2>
+        </div>
+        <p>
+          Students research a social issue, design a useful app, meet weekly milestones, gather feedback, and present a working final product.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="about-card">
+          <h3>🎯 Goals</h3>
+          <p>Each team sets technical and personal learning goals connected to their product idea.</p>
+        </article>
+        <article class="about-card">
+          <h3>🤝 Mentorship</h3>
+          <p>Teams prepare agendas, ask better questions, and use mentor feedback to improve their app.</p>
+        </article>
+        <article class="about-card">
+          <h3>🚀 Final Deliverable</h3>
+          <p>Every team presents a working app, prototype, or demo that addresses a real-world issue.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer id="archive">
+      <strong>Past showcases</strong>
+      <div class="nav-links">
+        <a href="https://mrsramirez.github.io/InfyApp2023Landing/" target="_blank" rel="noopener">InfyApp 2023</a>
+        <a href="https://thomas-a-edison-cte-hs.github.io/InfyApp2024" target="_blank" rel="noopener">InfyApp 2024</a>
+        <a href="#top">Back to top</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Replace these placeholder teams with the 2026 team names, links, images, and focus areas.
+    // Put your images in an /images folder, then use paths like "images/TeamName.gif".
+    const teams = [
+      {
+        name: "Team Aurora",
+        category: "Health",
+        focus: "Mental wellness support for students",
+        description: "A student-centered app that helps users track mood, find resources, and build healthier routines.",
+        image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop",
+        url: "#",
+        tags: ["UI/UX", "Wellness", "Prototype"]
+      },
+      {
+        name: "EcoByte",
+        category: "Climate",
+        focus: "Small climate actions with big impact",
+        description: "A climate action tracker that helps students make sustainable choices and see their progress over time.",
+        image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1200&auto=format&fit=crop",
+        url: "#",
+        tags: ["Climate", "Data", "Community"]
+      },
+      {
+        name: "FoodLoop",
+        category: "Food Security",
+        focus: "Connecting food resources to families",
+        description: "A local resource finder designed to reduce food waste and help families locate nearby support.",
+        image: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop",
+        url: "#",
+        tags: ["Maps", "Access", "Research"]
+      },
+      {
+        name: "SafeRoute",
+        category: "Community",
+        focus: "Safer commutes for students",
+        description: "A planning tool that helps students identify safer routes, report concerns, and share useful tips.",
+        image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1200&auto=format&fit=crop",
+        url: "#",
+        tags: ["Safety", "Mobile", "Design"]
+      },
+      {
+        name: "StudySpark",
+        category: "Education",
+        focus: "Better study habits and peer support",
+        description: "A productivity app for goal setting, study groups, reminders, and positive accountability.",
+        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop",
+        url: "#",
+        tags: ["Education", "Planning", "Teams"]
+      },
+      {
+        name: "Mindful Meals",
+        category: "Health",
+        focus: "Nutrition planning made simple",
+        description: "A friendly app that helps students plan balanced meals while learning about nutrition and budgeting.",
+        image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200&auto=format&fit=crop",
+        url: "#",
+        tags: ["Health", "Budgeting", "Lifestyle"]
+      }
+    ];
+
+    const filters = ["All", ...new Set(teams.map(team => team.category))];
+    let activeTeam = 0;
+    let activeFilter = "All";
+
+    const teamCount = document.getElementById("teamCount");
+    const filtersEl = document.getElementById("filters");
+    const teamList = document.getElementById("teamList");
+    const featuredImage = document.getElementById("featuredImage");
+    const featuredTitle = document.getElementById("featuredTitle");
+    const featuredDescription = document.getElementById("featuredDescription");
+    const featuredTags = document.getElementById("featuredTags");
+    const featuredLink = document.getElementById("featuredLink");
+
+    teamCount.textContent = teams.length;
+
+    function getVisibleTeams() {
+      return activeFilter === "All" ? teams : teams.filter(team => team.category === activeFilter);
+    }
+
+    function renderFilters() {
+      filtersEl.innerHTML = filters.map(filter => `
+        <button class="filter-button ${filter === activeFilter ? "active" : ""}" onclick="setFilter('${filter}')">
+          ${filter}
+        </button>
+      `).join("");
+    }
+
+    function renderFeatured(team) {
+      featuredImage.src = team.image;
+      featuredImage.alt = `${team.name} project image`;
+      featuredTitle.textContent = team.name;
+      featuredDescription.textContent = team.description;
+      featuredLink.href = team.url;
+      featuredTags.innerHTML = team.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+    }
+
+    function renderTeams() {
+      const visibleTeams = getVisibleTeams();
+      if (!visibleTeams[activeTeam]) activeTeam = 0;
+
+      renderFeatured(visibleTeams[activeTeam]);
+
+      teamList.innerHTML = visibleTeams.map((team, index) => `
+        <article class="team-card ${index === activeTeam ? "active" : ""}" onclick="setActiveTeam(${index})" tabindex="0" onkeydown="handleCardKey(event, ${index})">
+          <span>${team.category}</span>
+          <h3>${team.name}</h3>
+          <p>${team.focus}</p>
+        </article>
+      `).join("");
+    }
+
+    function setActiveTeam(index) {
+      activeTeam = index;
+      renderTeams();
+    }
+
+    function setFilter(filter) {
+      activeFilter = filter;
+      activeTeam = 0;
+      renderFilters();
+      renderTeams();
+    }
+
+    function handleCardKey(event, index) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        setActiveTeam(index);
+      }
+    }
+
+    renderFilters();
+    renderTeams();
+  </script>
+</body>
+</html>
