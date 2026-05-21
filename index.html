@@ -246,7 +246,8 @@
       position: relative;
       min-height: 620px;
       display: grid;
-      place-items: center;
+      place-items: start center;
+      padding-top: 24px;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
@@ -273,7 +274,7 @@
       box-shadow: 0 28px 70px rgba(0,0,0,0.22);
       cursor: pointer;
       transform-style: preserve-3d;
-      transition: transform 700ms cubic-bezier(.2,.8,.2,1), opacity 350ms ease, filter 350ms ease;
+      transition: transform 1200ms cubic-bezier(.22,1,.36,1), opacity 500ms ease, filter 500ms ease;
     }
 
     .team-slide img {
@@ -283,7 +284,7 @@
       height: auto;
       object-fit: cover;
       opacity: 0.78;
-      transition: transform 700ms ease, opacity 300ms ease;
+      transition: transform 1200ms cubic-bezier(.22,1,.36,1), opacity 500ms ease;
     }
 
     .team-slide:hover img {
@@ -662,7 +663,7 @@
     ];
 
     const filters = ["All", ...new Set(teams.map(team => team.category))];
-    let activeTeam = 0;
+    let activeTeam = 3;
     let activeFilter = "All";
 
     const teamCount = document.getElementById("teamCount");
@@ -693,11 +694,11 @@
         const absOffset = Math.abs(offset);
         const isActive = index === activeTeam;
         const zIndex = 100 - absOffset;
-        const opacity = absOffset > 3 ? 0 : 1 - absOffset * 0.17;
-        const rotate = offset * -32;
-        const translateX = offset * 205;
-        const translateZ = isActive ? 90 : -Math.abs(offset) * 90;
-        const scale = isActive ? 1 : 0.9;
+        const opacity = absOffset > 4 ? 0 : 1 - absOffset * 0.14;
+        const rotate = offset * -26;
+        const translateX = offset * 185;
+        const translateZ = isActive ? 110 : -Math.abs(offset) * 75;
+        const scale = isActive ? 1 : 0.92;
         const blur = isActive ? 0 : Math.min(absOffset * 0.45, 1.2);
 
         return `
