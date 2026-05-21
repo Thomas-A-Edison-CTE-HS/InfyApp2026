@@ -12,6 +12,9 @@
     * {
       box-sizing: border-box;
     }
+    html {
+      scroll-behavior: smooth;
+    }
 
     :root {
       --bg: #ececec;
@@ -71,14 +74,29 @@
     }
 
     .brand-mark {
-      display: grid;
-      place-items: center;
-      width: auto;
-      height: 38px;
+      width: 92px;
+      height: 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       color: #fff;
       background: #111;
-      border-radius: 50%;
-      font-size: 0.9rem;
+      border-radius: 24px;
+      line-height: 1;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+    }
+
+    .brand-mark small {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.78;
+    }
+
+    .brand-mark strong {
+      font-size: 1.45rem;
+      letter-spacing: -0.05em;
     }
 
     .nav-links {
@@ -220,144 +238,141 @@
       background: #111;
     }
 
-    .team-stage {
-      min-height: 520px;
+    .team-carousel {
+      position: relative;
+      min-height: 620px;
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 20px;
-      align-items: stretch;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.38);
+      box-shadow: var(--shadow);
     }
 
-    .featured-card {
+    .carousel-track {
       position: relative;
+      width: min(320px, 72vw);
+      height: 460px;
+      perspective: 1200px;
+      transform-style: preserve-3d;
+    }
+
+    .team-slide {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 32px;
       overflow: hidden;
-      border-radius: var(--radius-xl);
       background: #111;
       color: #fff;
-      box-shadow: var(--shadow);
-      min-height: 520px;
+      box-shadow: 0 28px 70px rgba(0,0,0,0.22);
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 700ms cubic-bezier(.2,.8,.2,1), opacity 350ms ease, filter 350ms ease;
     }
 
-    .featured-card img {
+    .team-slide img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: auto;
       object-fit: cover;
-      opacity: 0.72;
-      filter: saturate(0.86) contrast(1.04);
-      transform: scale(1.03);
-      transition: transform 600ms ease, opacity 300ms ease;
+      opacity: 0.78;
+      transition: transform 700ms ease, opacity 300ms ease;
     }
 
-    .featured-card:hover img {
-      transform: scale(1.08);
-      opacity: 0.84;
+    .team-slide:hover img {
+      transform: scale(1.06);
+      opacity: 0.9;
     }
 
-    .featured-content {
+    .slide-content {
       position: absolute;
       inset: auto 0 0 0;
-      padding: 28px;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.86));
+      padding: 24px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.92));
     }
 
-    .featured-content h3 {
-      margin: 0;
-      font-size: clamp(2.4rem, 5vw, 5.4rem);
-      line-height: 0.88;
-      letter-spacing: -0.08em;
-    }
-
-    .featured-content p {
-      max-width: 520px;
-      font-size: 1.08rem;
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.82);
-    }
-
-    .tag-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin: 16px 0;
-    }
-
-    .tag {
+    .slide-content span {
+      display: inline-flex;
+      margin-bottom: 10px;
       padding: 7px 10px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      font-size: 0.88rem;
-      font-weight: 800;
-    }
-
-    .team-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      align-content: start;
-    }
-
-    .team-card {
-      position: relative;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.62);
-      padding: 16px;
-      min-height: 160px;
-      cursor: pointer;
-      overflow: hidden;
-      transition: transform 220ms ease, background 220ms ease, box-shadow 220ms ease;
-    }
-
-    .team-card:hover,
-    .team-card.active {
-      transform: translateY(-4px);
-      background: #fff;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .team-card.active {
-      outline: 3px solid #111;
-      outline-offset: -3px;
-    }
-
-    .team-card span {
-      display: inline-flex;
-      margin-bottom: 28px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.24);
       font-size: 0.78rem;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--muted);
-      font-weight: 900;
     }
 
-    .team-card h3 {
+    .slide-content h3 {
       margin: 0;
-      font-size: 1.55rem;
-      letter-spacing: -0.04em;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 0.9;
+      letter-spacing: -0.07em;
     }
 
-    .team-card p {
-      margin: 8px 0 0;
-      color: var(--muted);
-      line-height: 1.35;
+    .slide-content p {
+      margin: 12px 0 18px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.4;
     }
 
-    .team-card::after {
-      content: "↗";
+    .carousel-actions {
       position: absolute;
-      right: 16px;
-      top: 14px;
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.68);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      z-index: 4;
+    }
+
+    .carousel-button {
+      width: 44px;
+      height: 44px;
+      border: 0;
       border-radius: 50%;
       background: #111;
       color: #fff;
-      font-weight: 900;
+      font: inherit;
+      font-size: 1.35rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      max-width: 220px;
+      overflow: hidden;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.28);
+      cursor: pointer;
+      transition: width 250ms ease, background 250ms ease;
+      flex: 0 0 auto;
+    }
+
+    .carousel-dot.active {
+      width: 28px;
+      background: #111;
     }
 
     .about-grid {
@@ -400,7 +415,6 @@
 
     @media (max-width: 900px) {
       .hero,
-      .team-stage,
       .about-grid {
         grid-template-columns: 1fr;
       }
@@ -436,7 +450,7 @@
   <main class="site-shell">
     <header class="topbar">
       <a class="brand" href="#top" aria-label="InfyApp home">
-        <span class="brand-mark">&emsp;InfyApp&emsp;<br>&emsp;&thinsp;&thinsp;&thinsp;&thinsp;2026&emsp;</span>
+        <span class="brand-mark"><small>InfyApp</small><strong>2026</strong></span>
         <span>Thomas A. Edison CTE HS ·</span>
       </a>
       <nav class="nav-links" aria-label="Page navigation">
@@ -448,10 +462,10 @@
 
     <section class="hero" id="top">
       <div>
-        <div class="eyebrow">✦ Student-built Digital Products for real-world problems</div>
-        <h1>InfyApp 2026 Showcase</h1>
+        <div class="eyebrow">✦ Student-built digital products for real-world problems</div>
+        <h1>Building Technology for Social Impact</h1>
         <p class="hero-copy">
-          Celebrating this year’s teams. Visit their websites.
+          InfyApp 2026 Showcase · Celebrating this year’s teams and the digital products they created to address real-world problems.
         </p>
       </div>
 
@@ -478,18 +492,14 @@
 
       <div class="controls" id="filters" aria-label="Team filters"></div>
 
-      <div class="team-stage">
-        <article class="featured-card" id="featuredCard">
-          <img id="featuredImage" src="" alt="" />
-          <div class="featured-content">
-            <div class="tag-row" id="featuredTags"></div>
-            <h3 id="featuredTitle"></h3>
-            <p id="featuredDescription"></p>
-            <a class="pill-button" id="featuredLink" href="#" target="_blank" rel="noopener">Visit Project</a>
-          </div>
-        </article>
+      <div class="team-carousel" aria-label="Interactive team carousel">
+        <div class="carousel-track" id="carouselTrack"></div>
 
-        <div class="team-list" id="teamList" aria-label="All teams"></div>
+        <div class="carousel-actions" aria-label="Carousel controls">
+          <button class="carousel-button" onclick="toPrevTeam()" aria-label="Previous team">‹</button>
+          <div class="carousel-dots" id="carouselDots" aria-label="Team carousel dots"></div>
+          <button class="carousel-button" onclick="toNextTeam()" aria-label="Next team">›</button>
+        </div>
       </div>
     </section>
 
@@ -569,7 +579,7 @@
         category: "Hunger",
         focus: "Showcasing hunger as an issue within local communities.",
         description: "A student-centered game that highlights the struggles of hunger in local communities to raise awareness and encourage empathy.",
-        image: "images/2026/",
+        image: "images/2026/11.png",
         url: "https://rmnjot23.github.io/TeamBrownies_InfyApp26/?authuser=0",
         tags: ["Community", "Awareness", "Game"]
       },
@@ -641,7 +651,7 @@
         category: "Productivity",
         focus: "Helping students balance school and personal life without feeling overwhelmed.",
         description: "Duo-Plan is a student productivity and organization app designed to help students manage assignments, reminders, schedules, and daily responsibilities all in one place.",
-        image: "",
+        image: "images/2026/12.png",
         url: "https://xavier734.github.io/InfyAppTeamTemplate/?authuser=0",
         tags: ["Productivity", "Organization", "Planning"]
       }
@@ -653,12 +663,8 @@
 
     const teamCount = document.getElementById("teamCount");
     const filtersEl = document.getElementById("filters");
-    const teamList = document.getElementById("teamList");
-    const featuredImage = document.getElementById("featuredImage");
-    const featuredTitle = document.getElementById("featuredTitle");
-    const featuredDescription = document.getElementById("featuredDescription");
-    const featuredTags = document.getElementById("featuredTags");
-    const featuredLink = document.getElementById("featuredLink");
+    const carouselTrack = document.getElementById("carouselTrack");
+    const carouselDots = document.getElementById("carouselDots");
 
     teamCount.textContent = teams.length;
 
@@ -674,28 +680,56 @@
       `).join("");
     }
 
-    function renderFeatured(team) {
-      featuredImage.src = team.image;
-      featuredImage.alt = `${team.name} project image`;
-      featuredTitle.textContent = team.name;
-      featuredDescription.textContent = team.description;
-      featuredLink.href = team.url;
-      featuredTags.innerHTML = team.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
-    }
-
     function renderTeams() {
       const visibleTeams = getVisibleTeams();
       if (!visibleTeams[activeTeam]) activeTeam = 0;
 
-      renderFeatured(visibleTeams[activeTeam]);
+      carouselTrack.innerHTML = visibleTeams.map((team, index) => {
+        const offset = index - activeTeam;
+        const absOffset = Math.abs(offset);
+        const isActive = index === activeTeam;
+        const zIndex = 100 - absOffset;
+        const opacity = absOffset > 3 ? 0 : 1 - absOffset * 0.17;
+        const rotate = offset * -42;
+        const translateX = offset * 150;
+        const translateZ = isActive ? 90 : -Math.abs(offset) * 90;
+        const scale = isActive ? 1 : 0.84;
+        const blur = isActive ? 0 : Math.min(absOffset * 1.4, 4);
 
-      teamList.innerHTML = visibleTeams.map((team, index) => `
-        <article class="team-card ${index === activeTeam ? "active" : ""}" onclick="setActiveTeam(${index})" tabindex="0" onkeydown="handleCardKey(event, ${index})">
-          <span>${team.category}</span>
-          <h3>${team.name}</h3>
-          <p>${team.focus}</p>
-        </article>
+        return `
+          <article
+            class="team-slide"
+            onclick="setActiveTeam(${index})"
+            style="z-index:${zIndex}; opacity:${opacity}; filter: blur(${blur}px); transform: translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotate}deg) scale(${scale});"
+            tabindex="0"
+            onkeydown="handleCardKey(event, ${index})"
+          >
+            <img src="${team.image}" alt="${team.name} project image" />
+            <div class="slide-content">
+              <span>${team.category}</span>
+              <h3>${team.name}</h3>
+              <p>${isActive ? team.description : team.focus}</p>
+              ${isActive ? `<a class="pill-button" href="${team.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Visit Project</a>` : ""}
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      carouselDots.innerHTML = visibleTeams.map((_, index) => `
+        <button class="carousel-dot ${index === activeTeam ? "active" : ""}" onclick="setActiveTeam(${index})" aria-label="Go to team ${index + 1}"></button>
       `).join("");
+    }
+
+    function toPrevTeam() {
+      const visibleTeams = getVisibleTeams();
+      activeTeam = Math.max(0, activeTeam - 1);
+      renderTeams();
+    }
+
+    function toNextTeam() {
+      const visibleTeams = getVisibleTeams();
+      activeTeam = Math.min(visibleTeams.length - 1, activeTeam + 1);
+      renderTeams();
     }
 
     function setActiveTeam(index) {
