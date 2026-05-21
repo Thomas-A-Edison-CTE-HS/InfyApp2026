@@ -58,11 +58,13 @@
       position: sticky;
       top: 16px;
       z-index: 10;
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      background: rgba(236, 236, 236, 0.78);
-      backdrop-filter: blur(18px);
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.45);
+      background: rgba(255, 255, 255, 0.52);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
       border-radius: 999px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
     }
 
     .brand {
@@ -108,19 +110,21 @@
 
     .nav-links a,
     .pill-button {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.55);
-      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.42);
+      padding: 10px 18px;
       border-radius: 999px;
       font-weight: 700;
       font-size: 0.92rem;
-      transition: transform 180ms ease, background 180ms ease;
+      backdrop-filter: blur(12px);
+      transition: all 240ms cubic-bezier(.2,.8,.2,1);
     }
 
     .nav-links a:hover,
     .pill-button:hover {
-      transform: translateY(-2px);
-      background: #fff;
+      transform: translateY(-2px) scale(1.03);
+      background: rgba(255,255,255,0.88);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
     }
 
     .hero {
@@ -252,7 +256,7 @@
 
     .carousel-track {
       position: relative;
-      width: min(320px, 72vw);
+      width: min(360px, 76vw);
       height: 460px;
       perspective: 1200px;
       transform-style: preserve-3d;
@@ -338,8 +342,8 @@
     }
 
     .carousel-button {
-      width: 44px;
-      height: 44px;
+      width: 24px;
+      height: 24px;
       border: 0;
       border-radius: 50%;
       background: #111;
@@ -355,7 +359,7 @@
       display: flex;
       align-items: center;
       gap: 7px;
-      max-width: 220px;
+      max-width: 280px;
       overflow: hidden;
     }
 
@@ -544,11 +548,10 @@
   </main>
 
   <script>
-    // Replace these placeholder teams with the 2026 team names, links, images, and focus areas.
-    // Put your images in an /images folder, then use paths like "images/TeamName.gif".
+  
     const teams = [
       {
-        name: "Team The Road Is Ours",
+        name: "The Road Is Ours",
         category: "Road Safety",
         focus: "Creating a space where users can build confidence on the road.",
         description: "A student-centered app that helps strengthen users’ understanding of road safety and the consequences of not following proper traffic protocols.",
@@ -557,7 +560,7 @@
         tags: ["Road Safety", "Driving", "Awareness"]
       },
       {
-        name: "Team Justice Figs",
+        name: "Justice Figs",
         category: "Affordability",
         focus: "Educating students about major issues affecting cities.",
         description: "A student-centered game that teaches players how to implement public policies that can positively impact their communities.",
@@ -566,7 +569,7 @@
         tags: ["Policy", "Community", "Education"]
       },
       {
-        name: "Team Ember Earth",
+        name: "Ember Earth",
         category: "World Hunger",
         focus: "Raising awareness about the many causes and effects of world hunger.",
         description: "A story-driven historical game inspired by the Irish Potato Famine. Players follow two pathways: one focused on navigating hunger within their communities, and the other focused on understanding the government’s role in global malnutrition.",
@@ -575,16 +578,7 @@
         tags: ["History", "Awareness", "Interactive"]
       },
       {
-        name: "Team Browinews",
-        category: "Hunger",
-        focus: "Showcasing hunger as an issue within local communities.",
-        description: "A student-centered game that highlights the struggles of hunger in local communities to raise awareness and encourage empathy.",
-        image: "images/2026/11.png",
-        url: "https://rmnjot23.github.io/TeamBrownies_InfyApp26/?authuser=0",
-        tags: ["Community", "Awareness", "Game"]
-      },
-      {
-        name: "Team Tuxedo",
+        name: "Tuxedo",
         category: "Inflation",
         focus: "Explaining inflation to students in a simple and engaging way.",
         description: "A student-centered app that helps users understand inflation, its causes, and how it impacts everyday life.",
@@ -593,7 +587,7 @@
         tags: ["Economics", "Learning", "Finance"]
       },
       {
-        name: "Team Companion 5",
+        name: "Companion 5",
         category: "Environment",
         focus: "Creating a cleaner future for people and wildlife.",
         description: "An environmental game focused on cleaning up campsites and natural areas so people can enjoy nature while restoring habitats for animals.",
@@ -602,7 +596,7 @@
         tags: ["Environment", "Nature", "Game"]
       },
       {
-        name: "Team Poverty Fighters",
+        name: "Poverty Fighters",
         category: "Poverty",
         focus: "Helping communities in need.",
         description: "A student-centered app that helps users locate nearby charities and community centers that provide food, clothing, and other essential resources.",
@@ -611,7 +605,7 @@
         tags: ["Support", "Community", "Resources"]
       },
       {
-        name: "Team Blooming Birds",
+        name: "Blooming Birds",
         category: "Mental Health",
         focus: "Supporting teen mental wellness.",
         description: "A student-centered app that helps teens manage stress and anxiety through fun and interactive wellness tools.",
@@ -620,16 +614,16 @@
         tags: ["Wellness", "Teens", "Mental Health"]
       },
       {
-        name: "Team DragonZ",
+        name: "DragonZ",
         category: "Driving Safety",
         focus: "Helping young adults learn safe driving skills through interactive experiences.",
-        description: "DriveQuest teaches new and young drivers what to do — and what not to do — when navigating the road. The app includes multiple learning styles and interactive activities to keep drivers and communities safe.",
+        description: "DriveQuest teaches new and young drivers what to do, and what not to do, when navigating the road. The app includes multiple learning styles and interactive activities to keep drivers and communities safe.",
         image: "images/2026/5.png",
         url: "https://karanm517.github.io/DragonZ_InfyApp26a/?authuser=0",
         tags: ["Driving", "Interactive", "Safety"]
       },
       {
-        name: "Team Crashless Crew",
+        name: "Crashless Crew",
         category: "Car Crashes",
         focus: "Reducing the number of car crashes on the road.",
         description: "An app that helps users drive more safely by providing alerts when mistakes are made or attention is lost. It also gives drivers a post-drive summary with feedback and suggestions for improvement.",
@@ -638,13 +632,23 @@
         tags: ["Driving", "Alerts", "Safety"]
       },
       {
-        name: "Team Intellectuals",
+        name: "Intellectuals",
         category: "Employment",
         focus: "Providing job opportunities for young adults.",
         description: "An app that connects teenagers with small business job opportunities designed for individuals with limited work experience.",
         image: "images/2026/6.png",
         url: "https://sadiyahtaehs.github.io/TeamIntellectuals_InfyApp26/?authuser=0",
         tags: ["Jobs", "Opportunities", "Youth"]
+      },
+      
+      {
+        name: "Browinews",
+        category: "Hunger",
+        focus: "Showcasing hunger as an issue within local communities.",
+        description: "A student-centered game that highlights the struggles of hunger in local communities to raise awareness and encourage empathy.",
+        image: "images/2026/11.png",
+        url: "https://rmnjot23.github.io/TeamBrownies_InfyApp26/?authuser=0",
+        tags: ["Community", "Awareness", "Game"]
       },
       {
         name: "Xavier",
@@ -690,11 +694,11 @@
         const isActive = index === activeTeam;
         const zIndex = 100 - absOffset;
         const opacity = absOffset > 3 ? 0 : 1 - absOffset * 0.17;
-        const rotate = offset * -42;
-        const translateX = offset * 150;
+        const rotate = offset * -32;
+        const translateX = offset * 205;
         const translateZ = isActive ? 90 : -Math.abs(offset) * 90;
-        const scale = isActive ? 1 : 0.84;
-        const blur = isActive ? 0 : Math.min(absOffset * 1.4, 4);
+        const scale = isActive ? 1 : 0.9;
+        const blur = isActive ? 0 : Math.min(absOffset * 0.45, 1.2);
 
         return `
           <article
