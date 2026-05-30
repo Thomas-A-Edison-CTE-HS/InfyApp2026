@@ -491,6 +491,61 @@
     background-position: 300% 50%;
   }
 }
+
+    /* Mobile Carousel */
+@media (max-width: 768px) {
+
+  .site-shell {
+    width: calc(100% - 16px);
+    padding: 16px 0 48px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 40px 0 24px;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 12vw, 4rem);
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-heading p {
+    max-width: 100%;
+  }
+
+  .team-carousel {
+    min-height: 560px;
+    padding-top: 12px;
+  }
+
+  .carousel-track {
+    width: min(280px, 80vw);
+    height: 400px;
+  }
+
+  .slide-content h3 {
+    font-size: 1.8rem;
+  }
+
+  .slide-content p {
+    font-size: 0.9rem;
+  }
+
+  .carousel-actions {
+    bottom: 12px;
+    padding: 8px;
+  }
+
+  .carousel-dots {
+    max-width: 140px;
+  }
+}
   </style>
 </head>
 <body>
@@ -740,8 +795,12 @@
         const isActive = index === activeTeam;
         const zIndex = 100 - absOffset;
         const opacity = absOffset > 4 ? 0 : 1 - absOffset * 0.14;
-        const rotate = offset * -26;
-        const translateX = offset * 185;
+        
+        const isMobile = window.innerWidth < 768;
+
+        const rotate = offset * (isMobile ? -12 : -26);
+
+        const translateX = offset * (isMobile ? 95 : 185);
         const translateZ = isActive ? 110 : -Math.abs(offset) * 75;
         const scale = isActive ? 1 : 0.92;
         const blur = isActive ? 0 : Math.min(absOffset * 0.45, 1.2);
