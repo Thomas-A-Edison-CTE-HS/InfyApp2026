@@ -449,6 +449,48 @@
         width: min(100% - 20px, 1180px);
       }
     }
+
+    .finalist-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-bottom: 10px;
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #111;
+
+  background: linear-gradient(
+    90deg,
+    #ffd700,
+    #fff6c2,
+    #ffd700
+  );
+
+  background-size: 300% 100%;
+
+  animation: finalistGlow 2.5s linear infinite;
+
+  box-shadow:
+    0 0 12px rgba(255,215,0,.35);
+}
+
+@keyframes finalistGlow {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 300% 50%;
+  }
+}
   </style>
 </head>
 <body>
@@ -581,6 +623,7 @@
       },
       {
         name: "Justice Figs",
+        finalist: true,
         category: "Affordability",
         focus: "Educating students about major issues affecting cities.",
         description: "A student-centered game that teaches players how to implement public policies that can positively impact their communities.",
@@ -590,6 +633,7 @@
       },
         {
         name: "DragonZ",
+        finalist: true,
         category: "Driving Safety",
         focus: "Helping young adults learn safe driving skills through interactive experiences.",
         description: "DriveQuest teaches new and young drivers what to do, and what not to do, when navigating the road. The app includes multiple learning styles and interactive activities to keep drivers and communities safe.",
@@ -712,11 +756,29 @@
           >
             <img src="${team.image}" alt="${team.name} project image" />
             <div class="slide-content">
-              <span>${team.category}</span>
-              <h3>${team.name}</h3>
-              <p>${isActive ? team.description : team.focus}</p>
-              ${isActive ? `<a class="pill-button" href="${team.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Visit Project</a>` : ""}
-            </div>
+
+  ${team.finalist && isActive
+    ? `<div class="finalist-badge">🏆 Finalist</div>`
+    : ""
+  }
+
+  <span>${team.category}</span>
+  <h3>${team.name}</h3>
+
+  <p>${isActive ? team.description : team.focus}</p>
+
+  ${isActive
+    ? `<a class="pill-button"
+         href="${team.url}"
+         target="_blank"
+         rel="noopener"
+         onclick="event.stopPropagation()">
+         Visit Project
+       </a>`
+    : ""
+  }
+
+</div>
           </article>
         `;
       }).join("");
