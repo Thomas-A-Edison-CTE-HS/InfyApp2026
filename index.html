@@ -449,6 +449,64 @@
         width: min(100% - 20px, 1180px);
       }
     }
+  .finalist-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #111;
+
+  background: linear-gradient(
+    90deg,
+    #ffd700,
+    #fff6c2,
+    #ffd700
+  );
+
+  background-size: 300% 100%;
+
+  animation:
+    finalistGlow 2.5s linear infinite,
+    finalistPulse 2s ease-in-out infinite;
+
+  box-shadow:
+    0 0 15px rgba(255,215,0,.45),
+    0 0 35px rgba(255,215,0,.25);
+}
+
+@keyframes finalistGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+@keyframes finalistPulse {
+  0%,100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
   </style>
 </head>
 <body>
@@ -560,15 +618,7 @@
         url: "https://varshiecakes.github.io/WeOwnTheRoad_Infy2026/?authuser=0",
         tags: ["Road Safety", "Driving", "Awareness"]
       },
-      {
-        name: "Justice Figs",
-        category: "Affordability",
-        focus: "Educating students about major issues affecting cities.",
-        description: "A student-centered game that teaches players how to implement public policies that can positively impact their communities.",
-        image: "images/2026/10.png",
-        url: "https://priyanshim16.github.io/TeamJusticeFigs_InfyAppChallange2026/?authuser=0",
-        tags: ["Policy", "Community", "Education"]
-      },
+      
       {
         name: "Ember Earth",
         category: "World Hunger",
@@ -586,6 +636,26 @@
         image: "images/2026/1.png",
         url: "https://elyssab4.github.io/TeamTuexdo_InfyApp26/?authuser=0",
         tags: ["Economics", "Learning", "Finance"]
+      },
+      {
+        name: "Justice Figs",
+        finalist: true,
+        category: "Affordability",
+        focus: "Educating students about major issues affecting cities.",
+        description: "A student-centered game that teaches players how to implement public policies that can positively impact their communities.",
+        image: "images/2026/10.png",
+        url: "https://priyanshim16.github.io/TeamJusticeFigs_InfyAppChallange2026/?authuser=0",
+        tags: ["Policy", "Community", "Education"]
+      },
+      {
+        name: "DragonZ",
+        finalist: true,
+        category: "Driving Safety",
+        focus: "Helping young adults learn safe driving skills through interactive experiences.",
+        description: "DriveQuest teaches new and young drivers what to do, and what not to do, when navigating the road. The app includes multiple learning styles and interactive activities to keep drivers and communities safe.",
+        image: "images/2026/5.png",
+        url: "https://karanm517.github.io/DragonZ_InfyApp26a/?authuser=0",
+        tags: ["Driving", "Interactive", "Safety"]
       },
        {
         name: "Browinews",
@@ -623,15 +693,7 @@
         url: "https://fren993.github.io/TeamBloomingBirds_InfyApp26/?authuser=0",
         tags: ["Wellness", "Teens", "Mental Health"]
       },
-      {
-        name: "DragonZ",
-        category: "Driving Safety",
-        focus: "Helping young adults learn safe driving skills through interactive experiences.",
-        description: "DriveQuest teaches new and young drivers what to do, and what not to do, when navigating the road. The app includes multiple learning styles and interactive activities to keep drivers and communities safe.",
-        image: "images/2026/5.png",
-        url: "https://karanm517.github.io/DragonZ_InfyApp26a/?authuser=0",
-        tags: ["Driving", "Interactive", "Safety"]
-      },
+      
       {
         name: "Crashless Crew",
         category: "Car Crashes",
@@ -710,11 +772,29 @@
           >
             <img src="${team.image}" alt="${team.name} project image" />
             <div class="slide-content">
-              <span>${team.category}</span>
-              <h3>${team.name}</h3>
-              <p>${isActive ? team.description : team.focus}</p>
-              ${isActive ? `<a class="pill-button" href="${team.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Visit Project</a>` : ""}
-            </div>
+
+  ${team.finalist
+    ? `<div class="finalist-badge">🏆 Finalist</div>`
+    : ""
+  }
+
+  <span>${team.category}</span>
+  <h3>${team.name}</h3>
+
+  <p>${isActive ? team.description : team.focus}</p>
+
+  ${isActive
+    ? `<a class="pill-button"
+         href="${team.url}"
+         target="_blank"
+         rel="noopener"
+         onclick="event.stopPropagation()">
+         Visit Project
+       </a>`
+    : ""
+  }
+
+</div>
           </article>
         `;
       }).join("");
