@@ -773,10 +773,10 @@
             <img src="${team.image}" alt="${team.name} project image" />
             <div class="slide-content">
 
-  ${team.finalist
-    ? `<div class="finalist-badge">🏆 Finalist</div>`
-    : ""
-  }
+  ${team.finalist && isActive
+  ? `<div class="finalist-badge">🏆 Finalist</div>`
+  : ""
+}
 
   <span>${team.category}</span>
   <h3>${team.name}</h3>
